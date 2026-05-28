@@ -109,6 +109,8 @@ struct ModelGap {
 ### 3.2 Gap 生成逻辑
 `GapGenerator::generate_candidate_gap()` 扫描目标车道上的所有障碍物，按纵向位置排序后，相邻两个障碍物之间形成一个候选 Gap：
 
+![](images/img1.png)
+
 ```cpp
 const std::vector<ModelGap>& GapGenerator::generate_candidate_gap() {
   // 1. 获取目标车道障碍物（按 relative_s 排序）
@@ -139,6 +141,8 @@ const std::vector<ModelGap>& GapGenerator::generate_candidate_gap() {
 + Gap 在汇入区域范围内（不超过实线/护栏约束）
 ## 4. Gap 评分模型
 ### 4.1 评分总公式
+
+![](images/img2.png)
 
 ```cpp
 double gap_total_cost = gap_length_cost        // Gap 长度代价
@@ -304,6 +308,8 @@ $$C_{overspeed} = \frac{50 \cdot \max(0, \; v_{ego} - v_{limit})}{\max(1, \; v_{
 
 ## 5. 汇入区域求解
 ### 5.1 问题定义
+
+![](images/img3.png)
 
 给定最优 Gap（前车 Lead、后车 Tail），需要计算：
 
